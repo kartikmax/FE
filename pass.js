@@ -3,25 +3,22 @@ var fs = require("fs")
 const fileOp = require("./txtOperator")
 const credentials = require("./pass.json")
 
+const SPREADSHEET_ID = "1qCwrCW8v6hDHPWuvwGsZrUgDrV41or7AQWsgWADCyoo"
 
-async function getRowsFromGoogleSheet(value) {
-  console.log(value,"8")
-  const SPREADSHEET_ID = "1qCwrCW8v6hDHPWuvwGsZrUgDrV41or7AQWsgWADCyoo"
+async function getRowsFromGoogleSheet() {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID)
   await doc.useServiceAccountAuth(credentials)
   await doc.loadInfo()
   const sheet = doc.sheetsByIndex[1]
-  console.log(doc)
   return await sheet.getRows()
 }
 
-async function googleSheetToJSON(value) {
-  const rows = await getRowsFromGoogleSheet(value)
+async function googleSheetToJSON() {
+  const rows = await getRowsFromGoogleSheet()
   const output = { screens: [] }
   const currentScreen = {}
 
   rows.forEach((row) => {
-    console.log(row,24)
     let currentScreen = output.screens.find((screen) => screen.name === row.Screen)
 
   if (!currentScreen) {

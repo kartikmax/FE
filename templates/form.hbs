@@ -113,8 +113,7 @@ const sendData = {
 
         {{#case "Dropdown"}}
       <FormControl fullWidth>
-        {{log label}}
-        <InputLabel>{formData.{{label}} }</InputLabel>
+        <InputLabel>{{label}}</InputLabel>
         <Select
           name="{{name}}"
           value={ formData.{{name}} }
