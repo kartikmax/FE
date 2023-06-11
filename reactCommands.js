@@ -1,7 +1,7 @@
 const sh = require("shelljs");
 const fs = require("fs");
 
-function executeReactCommands(sheetData,templateCreator) {
+function executeReactCommands() {
   sh.exec("npm install -g vite");
   sh.exec("npm create vite@latest myapp -- --template react");
   fs.copyFileSync("./templates/package.hbs", "./myapp/package.json");
